@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwaySync</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <a href="/">RunwaySync</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/colecciones">Colecciones</a></li>
+                <li><a href="/eventos">Eventos</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <%- body %>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; <%= new Date().getFullYear() %> RunwaySync. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="/privacidad">Privacidad</a></li>
+                <li><a href="/terminos">Términos</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
