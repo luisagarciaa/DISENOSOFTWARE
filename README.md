@@ -1,8 +1,6 @@
-[README.md](https://github.com/user-attachments/files/26955535/README.md)
-# 🛫 RunwaySync — Plataforma Web RunwaySync
+# 👗 RunwaySync — Plataforma Web de Moda
 
 Proyecto monolítico con **Express.js** + **EJS** + **Mongoose**, implementando un sistema de autenticación y gestión de usuarios con arquitectura MVC.
-
 ---
 
 ## 🚀 Inicio rápido
@@ -33,7 +31,7 @@ RunwaySync/
 ├── views/
 │   ├── layouts/
 │   │   └── main.ejs             # Layout base compartido
-│   ├── index.ejs                # Página de inicio de empresa
+│   ├── index.ejs                # Página de inicio / landing
 │   ├── login.ejs                # Formulario de inicio de sesión
 │   ├── register.ejs             # Formulario de registro
 │   ├── dashboard.ejs            # Panel principal del usuario
@@ -65,6 +63,38 @@ RunwaySync/
 | **Router Module** | src/routes/router.js | Centraliza todas las rutas en un único módulo |
 | **Front Controller** | src/app.js | Punto de entrada único que monta el router principal |
 | **Static Assets** | public/ | Servicio de archivos estáticos (CSS, SVG, imágenes) |
+
+---
+
+## ✅ Principios SOLID aplicados
+
+### S — Single Responsibility (Responsabilidad Única)
+
+- `src/app.js` solo configura e inicializa el servidor (motor de vistas, archivos estáticos, puerto).
+- `src/routes/router.js` solo define las rutas y delega la respuesta a las vistas.
+- Cada vista `.ejs` tiene una única responsabilidad: renderizar una pantalla específica del flujo.
+- `public/css/style.css` centraliza únicamente los estilos globales.
+
+### O — Open / Closed (Abierto / Cerrado)
+
+- El router está abierto para extenderse: agregar nuevas rutas (e.g., `/perfil`, `/catalogo`) no requiere modificar las rutas existentes.
+- Al implementar los controladores, se podrán añadir nuevas estrategias de autenticación sin modificar el router.
+- Las vistas EJS permiten incorporar nuevos componentes sin alterar el layout base (`main.ejs`).
+
+### L — Liskov Substitution (Sustitución de Liskov)
+
+- El `appRouter` exportado desde `router.js` puede reemplazarse por cualquier router de Express compatible sin romper `app.js`, siempre que respete el contrato `(req, res, next)`.
+- Al implementarse los controladores, cualquier `UserController` concreto podrá sustituir a otro siempre que exponga los mismos métodos (`login`, `register`, `recuperar`, etc.).
+
+### I — Interface Segregation (Segregación de Interfaces)
+
+- El router expone solo las rutas que cada flujo necesita: autenticación (`/login`, `/register`), dashboard (`/dashboard`) y recuperación de contraseña (`/recuperar`, `/verificar-codigo`, `/nueva-contrasena`, `/confirmacion`).
+- Los futuros controladores deberán implementar únicamente los métodos que su dominio requiere, sin verse obligados a depender de métodos ajenos.
+
+### D — Dependency Inversion (Inversión de Dependencias)
+
+- `app.js` depende del módulo abstracto `appRouter` importado desde `routes/router.js`, no de implementaciones concretas de rutas.
+- Al integrar Mongoose, los futuros servicios dependerán de una abstracción del repositorio (e.g., `IUsuarioRepository`), no directamente del modelo de Mongoose, facilitando el cambio de base de datos sin afectar la lógica de negocio.
 
 ---
 
