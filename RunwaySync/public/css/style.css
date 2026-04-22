@@ -1,0 +1,369 @@
+/* =============================================
+   RUNWAY SYNC — Estilos Globales
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =============================================
+   LANDING PAGE
+   ============================================= */
+
+.landing-page {
+    /*
+        IMAGEN REQUERIDA — Fondo de textura seda/ondas:
+        Coloca el archivo "9.svg" en: /public/images/9.svg
+        (crear la carpeta /public/images/ si no existe)
+    */
+    background-image: url('/svg/9.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f0eeec; /* fallback si 9.svg no carga */
+    height: 100vh;
+    overflow: hidden;
+}
+
+.landing-container {
+    display: flex;
+    height: 100vh;
+    align-items: stretch;
+}
+
+/* ---- Lado izquierdo: ilustración ---- */
+.landing-illustration {
+    flex: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    overflow: hidden;
+}
+
+.model-illustration {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    transform: scale(1.15);
+    transform-origin: left center;
+}
+
+/* Placeholder visual cuando 10.svg no está disponible */
+.illustration-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 3rem 3rem 0;
+}
+
+.logo-text-landing {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #111;
+    letter-spacing: -1px;
+}
+
+.logo-text-landing span {
+    display: block;
+}
+
+/* ---- Lado derecho: botones ---- */
+.landing-actions {
+    flex: 0.9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4rem;
+    padding: 2rem 4rem;
+}
+
+/* =============================================
+   BOTONES GLOBALES
+   ============================================= */
+
+.btn {
+    display: block;
+    width: 320px;
+    padding: 1.15rem 2rem;
+    border-radius: 50px;
+    font-size: 1.25rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+}
+
+.btn:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: #111;
+    color: #fff;
+    border-color: #111;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #111;
+    border-color: #111;
+}
+
+/* =============================================
+   PÁGINA DE REGISTRO
+   ============================================= */
+
+.register-page {
+    /*
+        IMAGEN REQUERIDA — mismo fondo que la landing:
+        Coloca el archivo "9.svg" en: /public/images/9.svg
+    */
+    background-image: url('/svg/9.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f0eeec;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+/* ---- Tarjeta del formulario ---- */
+.register-card {
+    background-color: #e3e0dd;
+    border-radius: 28px;
+    padding: 2.8rem 2.2rem 2.2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ---- Encabezado: flecha + título ---- */
+.register-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
+}
+
+.back-arrow {
+    font-size: 1.6rem;
+    color: #111;
+    text-decoration: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    transition: opacity 0.2s ease;
+}
+
+.back-arrow:hover {
+    opacity: 0.6;
+}
+
+.register-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.5px;
+}
+
+/* ---- Formulario ---- */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.form-group {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 0.85rem 1.25rem;
+    transition: box-shadow 0.2s ease;
+}
+
+.form-group:focus-within {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.15);
+}
+
+.form-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 0.18rem;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.01em;
+}
+
+.form-input {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.82rem;
+    color: #777;
+    font-family: 'Inter', sans-serif;
+    padding: 0;
+}
+
+.form-input::placeholder {
+    color: #bbb;
+}
+
+/* ID Empresarial: el placeholder muestra un dígito en rojo para indicar validación */
+.form-input.id-field::placeholder {
+    color: #bbb;
+}
+
+.id-hint {
+    font-size: 0.78rem;
+    color: #bbb;
+    margin-top: 0.15rem;
+}
+
+.id-hint .id-error {
+    color: #e05c3a; /* naranja-rojo del diseño */
+}
+
+/* ---- Botón submit ---- */
+.submit-btn {
+    margin-top: 1.1rem;
+    width: 100%;
+    padding: 1.1rem;
+    background-color: #111;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+}
+
+.submit-btn:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ---- Enlace a Iniciar Sesión ---- */
+.login-redirect {
+    text-align: center;
+    margin-top: 1.3rem;
+    font-size: 0.88rem;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-redirect a {
+    color: #1a6bdb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-redirect a:hover {
+    text-decoration: underline;
+}
+
+/* =============================================
+   PÁGINA DE INICIO DE SESIÓN
+   ============================================= */
+
+.login-page {
+    background-image: url('/svg/9.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f0eeec;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card {
+    background-color: #e3e0dd;
+    border-radius: 28px;
+    padding: 2.8rem 2.2rem 2.2rem;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.login-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.2rem;
+}
+
+.login-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: -0.5px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.register-redirect {
+    text-align: center;
+    margin-top: 1.3rem;
+    font-size: 0.88rem;
+    color: #444;
+    font-family: 'Inter', sans-serif;
+}
+
+.register-redirect a {
+    color: #1a6bdb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-redirect a:hover {
+    text-decoration: underline;
+}

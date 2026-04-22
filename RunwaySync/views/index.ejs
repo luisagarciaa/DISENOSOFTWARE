@@ -3,13 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site</title>
+    <title>RunwaySync</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-    <main>
-        <h1><%= message %></h1>
-        <p>Esta es una aplicación básica usando Express y EJS.</p>
-    </main>
+<body class="landing-page">
+
+    <!--
+        FONDO: El archivo "9.svg" se sirve desde /public/svg/9.svg → ruta pública /svg/9.svg
+        Referenciado en CSS (style.css) como background-image de .landing-page
+    -->
+
+    <div class="landing-container">
+
+        <!-- ===== Lado izquierdo: ilustración principal ===== -->
+        <div class="landing-illustration">
+            <!--
+                Ilustración principal: /public/svg/10.svg → ruta pública /svg/10.svg
+                Este SVG contiene el logo "RunwaySync" y la figura de la modelo.
+                Si el archivo no carga, se muestra el bloque #illustration-fallback.
+            -->
+            <img
+                src="/svg/10.svg"
+                alt="RunwaySync — Ilustración principal"
+                class="model-illustration"
+                onerror="this.style.display='none'; document.getElementById('illustration-fallback').style.display='flex';"
+            >
+
+            <!-- Placeholder visible solo si 10.svg no carga -->
+            <div class="illustration-placeholder" id="illustration-fallback" style="display: none;">
+                <div class="logo-text-landing">
+                    <span>RUNWAY</span>
+                    <span>SYNC</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== Lado derecho: botones de acción ===== -->
+        <div class="landing-actions">
+            <a href="/login" class="btn btn-primary">Iniciar Sesión</a>
+            <a href="/register" class="btn btn-secondary">Registrarse &rarr;</a>
+        </div>
+
+    </div>
+
 </body>
 </html>
