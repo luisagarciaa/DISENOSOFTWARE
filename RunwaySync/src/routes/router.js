@@ -4,27 +4,33 @@ const router = Router();
 
 router.use(express.urlencoded({ extended: true }));
 
-// Pantalla de inicio
 router.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
-// Login GET
 router.get('/login', (req, res) => {
   res.render('login.ejs');
 });
 
-// Login POST
 router.post('/login', (req, res) => {
   // TODO: validar credenciales con base de datos
   res.redirect('/dashboard');
 });
 
-// Dashboard
+router.get('/register', (req, res) => {
+  res.render('register.ejs');
+});
+
+router.post('/register', (req, res) => {
+  // TODO: guardar usuario en base de datos
+  res.redirect('/login');
+});
+
 router.get('/dashboard', (req, res) => {
   res.render('dashboard.ejs');
 });
 
+<<<<<<< HEAD
 // ── RECUPERAR CONTRASEÑA ──
 
 // Paso 1: Formulario correo
@@ -65,4 +71,6 @@ router.get('/confirmacion', (req, res) => {
   res.render('confirmacion.ejs');
 });
 
+=======
+>>>>>>> 010dfd4b8f05ba47e1c2f5a1aad098a5850309fd
 export default router;
