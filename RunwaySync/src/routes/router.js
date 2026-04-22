@@ -4,23 +4,28 @@ const router = Router();
 
 router.use(express.urlencoded({ extended: true }));
 
-// Pantalla de inicio
 router.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
-// Login GET
 router.get('/login', (req, res) => {
   res.render('login.ejs');
 });
 
-// Login POST
 router.post('/login', (req, res) => {
   // TODO: validar credenciales con base de datos
   res.redirect('/dashboard');
 });
 
-// Dashboard
+router.get('/register', (req, res) => {
+  res.render('register.ejs');
+});
+
+router.post('/register', (req, res) => {
+  // TODO: guardar usuario en base de datos
+  res.redirect('/login');
+});
+
 router.get('/dashboard', (req, res) => {
   res.render('dashboard.ejs');
 });
