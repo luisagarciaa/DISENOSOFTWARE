@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión — RunwaySync</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+
+    <!--
+        FONDO: El archivo "9.svg" se sirve desde /public/svg/9.svg → ruta pública /svg/9.svg
+        Referenciado en CSS (style.css) como background-image de .login-page
+    -->
+
+    <div class="login-card">
+
+        <!-- ===== Encabezado: flecha de regreso + título ===== -->
+        <div class="login-header">
+            <a href="/" class="back-arrow" aria-label="Volver al inicio">&larr;</a>
+            <h1 class="login-title">Iniciar Sesión</h1>
+        </div>
+
+        <!-- ===== Formulario de inicio de sesión ===== -->
+        <form class="login-form" action="/login" method="POST" novalidate>
+
+            <!-- E-mail -->
+            <div class="form-group">
+                <label class="form-label" for="email">E-mail</label>
+                <input
+                    class="form-input"
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder=""
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-group">
+                <label class="form-label" for="password">Contraseña</label>
+                <input
+                    class="form-input"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="················"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <!-- Botón de ingreso -->
+            <button type="submit" class="submit-btn">Iniciar Sesión</button>
+
+        </form>
+
+        <!-- ===== Enlace a Registrarse ===== -->
+        <p class="register-redirect">
+            ¿No tienes una cuenta?
+            <a href="/register">Registrarse</a>
+        </p>
+
+    </div>
+
+</body>
+</html>
