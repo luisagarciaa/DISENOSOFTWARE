@@ -1,0 +1,53 @@
+<style>
+    .ev-main-row { display: grid; grid-template-columns: 350px 1fr; gap: 2rem; margin-top: 2rem; }
+    .cal-card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #eee; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
+    .cal-day { padding: 10px; font-size: 0.8rem; border-radius: 8px; cursor: pointer; }
+    .cal-day:hover { background: #f0f0f0; }
+    .today-b { background: #000; color: white; }
+    .event-card { background: white; border-left: 5px solid; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; display: flex; gap: 1rem; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .event-date-block { text-align: center; min-width: 50px; }
+    .ev-day-num { font-size: 1.4rem; font-weight: bold; line-height: 1; }
+    .ev-month { font-size: 0.7rem; font-weight: bold; opacity: 0.6; }
+    .ev-title { font-weight: bold; display: block; }
+    .ev-type { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: bold; }
+</style>
+
+<div class="page-header">
+  <h2>Eventos</h2>
+  <p>Gestión de pasarelas y sesiones &middot; Abril 2026</p>
+</div>
+
+<div class="ev-main-row">
+  <!-- Mini Calendario -->
+  <div class="cal-card">
+    <div class="cal-grid">
+      <% ['L','M','M','J','V','S','D'].forEach(d => { %><div style="font-weight: bold; font-size: 0.7rem;"><%= d %></div><% }) %>
+      <% calDays.forEach(day => { %>
+        <div class="cal-day <%= day.today ? 'today-b' : '' %>">
+          <%= day.num %>
+          <% if(day.dots && day.dots.length) { %>
+            <div style="width: 4px; height: 4px; background: red; border-radius: 50%; margin: 0 auto;"></div>
+          <% } %>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <!-- Lista de Eventos -->
+  <div class="events-list">
+    <% eventosProximos.forEach(ev => { %>
+      <div class="event-card" style="border-left-color: <%= ev.color %>" onclick="alert('Abriendo: <%= ev.titulo %>')">
+        <div class="event-date-block">
+          <div class="ev-day-num" style="color: <%= ev.color %>"><%= ev.dia %></div>
+          <div class="ev-month"><%= ev.mes %></div>
+        </div>
+        <div class="event-body">
+          <span class="ev-type" style="background: <%= ev.bg %>; color: <%= ev.color %>"><%= ev.tipo %></span>
+          <span class="ev-title"><%= ev.titulo %></span>
+          <small><%= ev.hora %> - <%= ev.lugar %></small>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
