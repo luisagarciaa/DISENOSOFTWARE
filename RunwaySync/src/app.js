@@ -1,17 +1,28 @@
+import 'dotenv/config';
 import express from 'express';
-import { join, resolve } from "path";
+import { join } from 'path';
+import mongoose from 'mongoose';
 
-import appRouter from "./routes/router.js";
+import appRouter from './routes/router.js';
 
-const app = express();
-const port = 3000;
-app.set("view engine", 'ejs');
-app.set("views", "views")
-app.use(express.static(join("./public")))
-	
+const app  = express();
+const port = process.env.PORT || 3000;
 
-app.use("/", appRouter);
+// ── MongoDB ──
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB conectado ✓'))
+  .catch(err => console.error('Error conectando a MongoDB:', err));
+
+// ── Express ──
+app.set('view engine', 'ejs');
+app.set('views', 'views');
+app.use(express.static(join('./public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use('/', appRouter);
 
 app.listen(port, () => {
-  console.log(`Server running 🚀 at http://localhost:${port}`);
+  console.log(`Servidor corriendo 🚀 en http://localhost:${port}`);
 });
