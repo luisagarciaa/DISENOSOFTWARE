@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="/css/style.css"> <!-- Asegúrate de que esta ruta sea correcta -->
+<style>
+    .ev-main-row { display: grid; grid-template-columns: 350px 1fr; gap: 2rem; margin-top: 2rem; }
+    .cal-card { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #eee; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; }
+    .cal-day { padding: 10px; font-size: 0.8rem; border-radius: 8px; cursor: pointer; }
+    .today-b { background: #000; color: white; }
+    .event-card { background: white; border-left: 5px solid; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; display: flex; gap: 1rem; }
+</style>
+
+<div class="container">
+    <h2>Eventos</h2>
+
+    <div class="ev-main-row">
+        <!-- Calendario -->
+        <div class="cal-card">
+            <div class="cal-grid">
+                <% ['L','M','M','J','V','S','D'].forEach(d => { %>
+                    <div style="font-weight: bold;"><%= d %></div>
+                <% }) %>
+
+                <% calDays.forEach(day => { %>
+                    <div class="cal-day <%= day.today ? 'today-b' : '' %>">
+                        <%= day.num %>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Lista de Eventos -->
+        <div>
+            <% if (eventosProximos.length > 0) { %>
+                <% eventosProximos.forEach(ev => { %>
+                    <div class="event-card" style="border-left-color:<%= ev.color %>">
+                        <div>
+                            <strong><%= ev.dia %></strong><br>
+                            <small><%= ev.mes %></small>
+                        </div>
+                        <div>
+                            <strong><%= ev.titulo %></strong><br>
+                            <small><%= ev.hora %> - <%= ev.lugar %></small>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No hay eventos próximos.</p>
+            <% } %>
+        </div>
+    </div>
+</div>
