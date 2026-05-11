@@ -32,5 +32,9 @@ router.use((req, res, next) => {
   console.log('Ruta solicitada:', req.method, req.url);
   next();
 });  // 👈 cambiamos /auth por /
+// Calendario
+router.get('/calendario', (req, res) => {
+  res.render('calendario.ejs');
+});
 
 export default router;

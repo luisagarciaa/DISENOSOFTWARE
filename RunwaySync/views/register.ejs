@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RunwaySync - Registrarse</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="register-page">
+  <!-- IMAGEN DE FONDO: 9.svg en /public/svg/9.svg -->
+  <img class="register-bg" src="/svg/9.svg" alt=""/>
+  <div class="register-card">
+    <div class="register-header">
+      <a href="/" class="back-arrow">&larr;</a>
+      <h1 class="register-title">Registrarse</h1>
+    </div>
+    <form class="register-form" action="/register" method="POST">
+      <div class="input-box">
+        <label class="input-label" for="nombre">Nombre Completo</label>
+        <input type="text" id="nombre" name="nombre" class="input-field" placeholder="" autocomplete="name" required/>
+      </div>
+      <div class="input-box">
+        <label class="input-label" for="telefono">Número de Telefono</label>
+        <input type="tel" id="telefono" name="telefono" class="input-field" placeholder="" autocomplete="tel" required/>
+      </div>
+      <div class="input-box">
+        <label class="input-label" for="id_empresarial">ID Empresarial</label>
+        <input type="text" id="id_empresarial" name="id_empresarial" class="input-field" placeholder="" required/>
+        <span class="id-hint">Ej: 11.001.095.<span class="id-error">532</span></span>
+      </div>
+      <div class="input-box">
+        <label class="input-label" for="email">E-mail</label>
+        <input type="email" id="email" name="email" class="input-field" placeholder="" autocomplete="email" required/>
+      </div>
+      <div class="input-box">
+        <label class="input-label" for="password">Crear Contraseña</label>
+        <input type="password" id="password" name="password" class="input-field" placeholder="" autocomplete="new-password" required/>
+      </div>
+      <div class="input-box">
+        <label class="input-label" for="password_confirm">Confirmar Contraseña</label>
+        <input type="password" id="password_confirm" name="password_confirm" class="input-field" placeholder="" autocomplete="new-password" required/>
+      </div>
+      <button type="submit" class="submit-btn">Registrarse</button>
+    </form>
+    <p class="login-redirect">¿Ya tienes una cuenta? <a href="/login">Iniciar Sesión</a></p>
+  </div>
+</div>
+</body>
+</html>
