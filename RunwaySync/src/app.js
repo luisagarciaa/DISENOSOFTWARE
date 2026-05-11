@@ -1,15 +1,31 @@
 import express from 'express';
-import { join, resolve } from "path";
+import { join } from "path";
+import mongoose from 'mongoose';
+import session from 'express-session';
 
 import appRouter from "./routes/router.js";
 
 const app = express();
 const port = 3000;
-app.set("view engine", 'ejs');
-app.set("views", "views")
-app.use(express.static(join("./public")))
-	
 
+// Conexión a MongoDB
+mongoose.connect('mongodb://localhost:27017/runwaysync')
+  .then(() => console.log('MongoDB conectado ✅'))
+  .catch((err) => console.error('Error MongoDB:', err));
+
+// Configuración de la app
+app.set("view engine", 'ejs');
+app.set("views", "views");
+app.use(express.static(join("./public")));
+
+// Sesión
+app.use(session({
+  secret: 'runwaysync_secret_key',
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// Rutas
 app.use("/", appRouter);
 
 app.listen(port, () => {
