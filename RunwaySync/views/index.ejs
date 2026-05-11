@@ -1,50 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RunwaySync</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RunwaySync</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{width:100%;height:100%;overflow:hidden;}
+    body{background:#ffffff;}
+    .page{position:relative;width:100vw;height:100vh;overflow:hidden;}
+    .bg-svg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:fill;z-index:1;}
+    .buttons-overlay{position:absolute;z-index:10;right:0;top:0;width:50%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;pointer-events:none;}
+    .btn-login{pointer-events:all;display:flex;align-items:center;justify-content:center;width:340px;height:58px;background:#141516;color:#ffffff;font-family:'Georgia',serif;font-size:1.18rem;font-weight:700;text-decoration:none;border-radius:50px;letter-spacing:0.02em;box-shadow:0 4px 20px rgba(0,0,0,0.25);transition:transform 0.15s,background 0.2s;}
+    .btn-login:hover{background:#2e2e2e;transform:translateY(-2px);}
+    .btn-register{pointer-events:all;display:flex;align-items:center;justify-content:center;gap:10px;width:340px;height:56px;background:transparent;color:#141516;font-family:'Georgia',serif;font-size:1.18rem;font-weight:500;text-decoration:none;border-radius:50px;border:2px solid #141516;letter-spacing:0.02em;transition:transform 0.15s,background 0.2s;}
+    .btn-register:hover{background:rgba(20,21,22,0.07);transform:translateY(-2px);}
+  </style>
 </head>
-<body class="landing-page">
-
-    <!--
-        FONDO: El archivo "9.svg" se sirve desde /public/svg/9.svg → ruta pública /svg/9.svg
-        Referenciado en CSS (style.css) como background-image de .landing-page
-    -->
-
-    <div class="landing-container">
-
-        <!-- ===== Lado izquierdo: ilustración principal ===== -->
-        <div class="landing-illustration">
-            <!--
-                Ilustración principal: /public/svg/10.svg → ruta pública /svg/10.svg
-                Este SVG contiene el logo "RunwaySync" y la figura de la modelo.
-                Si el archivo no carga, se muestra el bloque #illustration-fallback.
-            -->
-            <img
-                src="/svg/10.svg"
-                alt="RunwaySync — Ilustración principal"
-                class="model-illustration"
-                onerror="this.style.display='none'; document.getElementById('illustration-fallback').style.display='flex';"
-            >
-
-            <!-- Placeholder visible solo si 10.svg no carga -->
-            <div class="illustration-placeholder" id="illustration-fallback" style="display: none;">
-                <div class="logo-text-landing">
-                    <span>RUNWAY</span>
-                    <span>SYNC</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===== Lado derecho: botones de acción ===== -->
-        <div class="landing-actions">
-            <a href="/login" class="btn btn-primary">Iniciar Sesión</a>
-            <a href="/register" class="btn btn-secondary">Registrarse &rarr;</a>
-        </div>
-
-    </div>
-
+<body>
+<div class="page">
+  <!-- IMAGEN DE PORTADA: 10.svg en /public/svg/10.svg -->
+  <img class="bg-svg" src="/svg/10.svg" alt="RunwaySync"/>
+  <div class="buttons-overlay">
+    <a href="/login" class="btn-login">Iniciar Sesión</a>
+    <a href="/register" class="btn-register">Registrarse &#8594;</a>
+  </div>
+</div>
 </body>
 </html>
