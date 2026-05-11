@@ -106,13 +106,11 @@ router.post('/login', (req, res) => {
   res.redirect('/dashboard');
 });
 
-router.get('/register', (req, res) => {
-  res.render('register.ejs');
-});
+router.get('/register',  (req, res) => res.render('register.ejs'));
+router.get('/registro',  (req, res) => res.render('register.ejs'));
 
-router.post('/register', (req, res) => {
-  res.redirect('/login');
-});
+router.post('/register', (req, res) => res.redirect('/login'));
+router.post('/registro', (req, res) => res.redirect('/login'));
 
 router.get('/dashboard', (req, res) => {
   res.render('dashboard.ejs');
