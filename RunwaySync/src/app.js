@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import { join } from 'path';
 import mongoose from 'mongoose';
+import session from 'express-session';
 
 import appRouter from './routes/router.js';
 
@@ -20,6 +21,13 @@ app.set('views', 'views');
 app.use(express.static(join('./public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// ── Sesión ──
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'runwaysync_secret_key',
+  resave: false,
+  saveUninitialized: false,
+}));
 
 app.use('/', appRouter);
 

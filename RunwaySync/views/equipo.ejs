@@ -1,0 +1,118 @@
+<style>
+    /* Estilos rápidos para que la pantalla se vea profesional */
+    .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .stat-num { font-size: 1.8rem; font-weight: bold; margin: 0.5rem 0; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .member-card { background: white; padding: 1.5rem; border-radius: 16px; text-align: center; cursor: pointer; transition: 0.3s; border: 1px solid #eee; }
+    .member-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .member-av { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-weight: bold; font-size: 1.2rem; }
+    .skill-tag { background: #f0f0f0; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin: 2px; display: inline-block; }
+    .btn-primary { background: #000; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+    
+    /* Panel de detalle oculto por defecto */
+    .detail-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; justify-content: flex-end; z-index: 1000; }
+    .detail-panel { width: 400px; background: white; height: 100%; padding: 2rem; animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+</style>
+
+<div class="page-header">
+  <div>
+    <h2>Equipo</h2>
+    <p>Equipo Creativo &middot; <%= miembros.length %> miembros activos</p>
+  </div>
+  <button class="btn-primary" onclick="alert('Función invitar próximamente')">
+    Invitar Miembro
+  </button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="stat-lbl">Miembros Activos</div>
+    <div class="stat-num"><%= stats.miembros %></div>
+    <div class="stat-sub" style="color: green"><%= stats.disponibles %> disponibles</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-lbl">Proyectos Activos</div>
+    <div class="stat-num"><%= stats.proyectos %></div>
+    <div class="stat-sub" style="color: #cd1b80"><%= stats.nuevosProyectos %> este mes</div>
+  </div>
+</div>
+
+<div class="team-grid">
+  <% miembros.forEach(m => { %>
+  <div class="member-card" onclick="abrirDetalle('<%= m.nombre %>', '<%= m.rol %>')">
+    <div class="member-av" style="background:<%= m.bg %>;color:<%= m.color %>"><%= m.ini %></div>
+    <div class="member-name" style="font-weight: bold;"><%= m.nombre %></div>
+    <div class="member-role" style="color: #666; font-size: 0.9rem;"><%= m.rol %></div>
+    <div class="member-skills" style="margin-top: 10px;">
+      <% m.skills.forEach(s => { %><span class="skill-tag"><%= s %></span><% }) %>
+    </div>
+  </div>
+  <% }) %>
+</div>
+
+<div class="detail-overlay" id="detailOverlay" onclick="this.style.display='none'">
+    <div class="detail-panel" onclick="event.stopPropagation()">
+        <h3 id="dName">Nombre</h3>
+        <p id="dRole">Rol</p>
+        <hr>
+        <p>Próximamente más detalles del perfil.</p>
+        <button class="btn-primary" onclick="document.getElementById('detailOverlay').style.display='none'">Cerrar</button>
+    </div>
+</div>
+
+<script>
+    function abrirDetalle(nombre, rol) {
+        document.getElementById('dName').innerText = nombre;
+        document.getElementById('dRole').innerText = rol;
+        document.getElementById('detailOverlay').style.display = 'flex';
+    }
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Equipo</title>
+  <style>
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .member-card { background: white; padding: 1.5rem; border-radius: 16px; text-align: center; cursor: pointer; border: 1px solid #eee; }
+    .member-av { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: auto; }
+    .skill-tag { background: #f0f0f0; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; }
+  </style>
+</head>
+<body>
+
+<h2>Equipo</h2>
+<p><%= miembros.length %> miembros activos</p>
+
+<div class="team-grid">
+  <% miembros.forEach(m => { %>
+    <div class="member-card" onclick="abrirDetalle('<%= m.nombre %>', '<%= m.rol %>')">
+      
+      <div class="member-av" style="background:<%= m.bg %>;color:<%= m.color %>">
+        <%= m.ini %>
+      </div>
+
+      <strong><%= m.nombre %></strong><br>
+      <small><%= m.rol %></small>
+
+      <div>
+        <% m.skills.forEach(s => { %>
+          <span class="skill-tag"><%= s %></span>
+        <% }) %>
+      </div>
+
+    </div>
+  <% }) %>
+</div>
+
+<script>
+function abrirDetalle(nombre, rol){
+  alert(nombre + " - " + rol);
+}
+</script>
+
+</body>
+</html>

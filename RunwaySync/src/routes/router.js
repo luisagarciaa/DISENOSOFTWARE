@@ -1,5 +1,7 @@
 import { Router } from "express";
 import express from "express";
+import authRoutes from './auth.routes.js';
+
 const router = Router();
 
 router.use(express.urlencoded({ extended: true }));
@@ -94,14 +96,18 @@ const PROXIMOS_MAYO = [
 ];
 
 // ── Rutas ──
+
+// Pantalla de inicio
 router.get('/', (req, res) => {
   res.render('index.ejs');
 });
 
+// Login GET
 router.get('/login', (req, res) => {
   res.render('login.ejs');
 });
 
+// Login POST
 router.post('/login', (req, res) => {
   res.redirect('/dashboard');
 });
@@ -112,6 +118,7 @@ router.get('/registro',  (req, res) => res.render('register.ejs'));
 router.post('/register', (req, res) => res.redirect('/login'));
 router.post('/registro', (req, res) => res.redirect('/login'));
 
+// Dashboard
 router.get('/dashboard', (req, res) => {
   res.render('dashboard.ejs');
 });
@@ -171,6 +178,14 @@ router.get('/eventos', (req, res) => {
   };
 
   res.render('eventos.ejs', { eventos: lista, usuario, resumen, PROXIMOS_MAYO, MIEMBROS });
+});
+
+// ── Recuperar contraseña ──
+router.use('/', authRoutes);
+
+// Calendario
+router.get('/calendario', (req, res) => {
+  res.render('calendario.ejs');
 });
 
 export default router;
